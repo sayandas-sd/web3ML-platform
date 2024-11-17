@@ -23,7 +23,7 @@ model User {
 
 model Task {
   id       Int    @id   @default(autoincrement())
-  title    String
+  title    String       @default("Choose the most voted one")
   option   Option[]
   userId   Int
   user     User       @relation(fields: [userId], references: [id])
@@ -52,5 +52,17 @@ model Submission {
   worker        Worker    @relation(fields: [workerId], references: [id])
   optionId      Int
   option        Option      @relation(fields: [optionId], references: [id])
+}
+
+model SubmissionCache {
+  id          Int        @id    @default(autoincrement())
+  task_id     Int
+  option1     Int
+  option2     Int
+  option3     Int
+  option4     Int
+  option5     Int
+  option6     Int
+  option7     Int
 }
 
