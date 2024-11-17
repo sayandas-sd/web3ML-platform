@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   address   String  @unique
   task      Task[]
   
@@ -22,7 +22,7 @@ model User {
 
 
 model Task {
-  id          Int    @id   @default(autoincrement())
+  id          Int          @id   @default(autoincrement())
   title       String       @default("Choose the most voted one")
   option      Option[]
   signature   String
@@ -32,10 +32,10 @@ model Task {
   submission  Submission[]
 }
 
-
+ 
 model Worker {
-  id              Int     @id   @default(autoincrement())
-  address         String  @unique
+  id              Int             @id   @default(autoincrement())
+  address         String          @unique
   submission      Submission[] 
   balanceId       Int
   locked_amount   Int
