@@ -22,11 +22,20 @@ router.post("/", async (req,res) => {
         const token = jwt.sign({
             userId: publicKey
         }, JWT_SECRET)
+
+        res.json({
+            token
+        })
+        
     } else {
-        const user = await prisma.user.create({
+        const token = await prisma.user.create({
             data: {
                 address: publicKey
             }
+        })
+
+        res.json({
+            token
         })
     }
 
