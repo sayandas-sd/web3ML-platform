@@ -20,19 +20,24 @@ router.post("/", async (req,res) => {
 
     if(ExistUser) {
         const token = jwt.sign({
-            userId: publicKey
+            userId: ExistUser.id
         }, JWT_SECRET)
 
         res.json({
             token
         })
-        
+
     } else {
-        const token = await prisma.user.create({
+        const user = await prisma.user.create({
             data: {
                 address: publicKey
             }
         })
+
+
+        const token = jwt.sign({
+            userId: user.id,
+        }, JWT_SECRET)
 
         res.json({
             token
