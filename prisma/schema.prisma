@@ -12,3 +12,29 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id    Int    @id @default(autoincrement())
+  address   String  @unique
+  
+}
+
+model Worker {
+  id   Int    @id   @default(autoincrement())
+  address   String  @unique
+}
+
+model Task {
+  id     Int    @id   @default(autoincrement())
+  title    String
+  option   Option[]
+}
+
+
+model Option {
+  id   Int    @id   @default(autoincrement())
+  image_url   String
+  option_id   Int
+  taskId      Int
+  task        Task    @relation(fields: [taskId], references: [id])
+}
